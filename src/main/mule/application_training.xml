@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e78e2062-9fd0-4a4c-845f-5ea8426395a4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="application_trainingFlow" doc:id="11ab3cb4-6a0f-4993-b830-7d6580f76b2e" >
+		<http:listener doc:name="Listener" doc:id="ab1274c6-904c-4568-b89a-3c33502c379a" config-ref="HTTP_Listener_config" path="/Flights"/>
+		<set-payload value='#["Esta es mi primera MuleApplication"]' doc:name="Set Payload" doc:id="a71c25d3-93ac-45eb-bf1f-6d2130c20740" />
+	</flow>
+</mule>
